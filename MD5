@@ -1,0 +1,7 @@
+3e8722324cc38cd24df71f92e181e824 *DESCRIPTION
+848baa45f4e7205ca2845b98b3878e2f *NAMESPACE
+78c93e8261a30f89bcc168e0c075a1d9 *R/RcmdrPlugin.doBy.R
+53f5ec0a73749a5e00f04a0f9f7ea7c1 *inst/etc/menus.txt
+d2abe017f1f1e3a02c07de761486977b *man/RcmdrPlugin.doBy-internal.Rd
+a2aa97948cf15eb0f4ab286451293f1a *man/RcmdrPlugin.doBy-package.Rd
+f191fae7c3e5364208e8ac956487b50e *man/summaryByGUI.Rd
