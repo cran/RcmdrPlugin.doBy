@@ -86,7 +86,7 @@ summaryByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="summaryby")
+	OKCancelHelp(help="summaryBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=2)
 	tkgrid(getFrame(variablesBox), getFrame(byBox), sticky="nw")
@@ -173,7 +173,7 @@ orderByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="orderby")
+	OKCancelHelp(help="orderBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=3)
 	tkgrid(getFrame(order1Box), getFrame(order2Box), getFrame(order3Box), sticky="nw")
@@ -233,7 +233,7 @@ splitByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="splitby")
+	OKCancelHelp(help="splitBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=1)
 	tkgrid(getFrame(byBox), sticky="nw")
@@ -244,7 +244,7 @@ splitByGUI <- function(){
 sampleByGUI <- function(){
   require(doBy)
   .activeDataSet <- ActiveDataSet()
-  initializeDialog(title=gettextRcmdr("Split by..."))
+  initializeDialog(title=gettextRcmdr("Sample by..."))
   dsname <- tclVar("SampledData")
 	dsnameFrame <- tkframe(top)
 	entryDsname <- ttkentry(dsnameFrame, width="20", textvariable=dsname)
@@ -306,7 +306,7 @@ sampleByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="sampleby")
+	OKCancelHelp(help="sampleBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=2)
 	tkgrid(getFrame(byBox), sticky="w")
