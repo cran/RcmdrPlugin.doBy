@@ -12,9 +12,9 @@ This package provides an R-commander plug-in for the core doBy functions in the 
 \tabular{ll}{
 Package: \tab RcmdrPlugin.doBy\cr
 Type: \tab Package\cr
-Version: \tab 0.1-0\cr
-Date: \tab 2011-12-12\cr
-License: \tab GPL 2\cr
+Version: \tab 0.1-2\cr
+Date: \tab 2012-01-03\cr
+License: \tab GPL-2\cr
 }
 
 }

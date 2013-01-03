@@ -1,11 +1,17 @@
 # Some Rcmdr dialogs for the doBy package
-# Last modified: 12 December 2011 by Jonathan Lee
+# Last modified: 4 January 2013 by Jonathan Lee
+
+# to satisify NOTEs about missing global binding (from John Fox's findGlobals() function - http://r.789695.n4.nabble.com/globalVariables-td4634291.html)
+if (getRversion() >= '2.15.1') globalVariables(c('top', 'dir1Variable', 'dir2Variable', 'dir3Variable',
+                                                 'OkCancelHelp', 'checkBoxFrame', 'buttonsFrame', 'replaceVariable', 'systematicVariable',
+                                                 'statisticFrame', 'statisticVariable'))
+
 
 # Note: the following function (with contributions from Richard Heiberger) 
 # can be included in any Rcmdr plug-in package to cause the package to load
 # the Rcmdr if it is not already loaded
 
-.First.lib <- function(libname, pkgname){
+.onAttach <- function(libname, pkgname){
     if (!interactive()) return()
     Rcmdr <- options()$Rcmdr
     plugins <- Rcmdr$plugins
@@ -17,7 +23,7 @@
     }
 }
 
-summaryByGUI <- function(){
+summaryByGUI <- function(){  
   require(doBy)
   .activeDataSet <- ActiveDataSet()
 	initializeDialog(title=gettextRcmdr("Summary by..."))
@@ -86,7 +92,7 @@ summaryByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="summaryBy")
+	OKCancelHelp(helpSubject="summaryBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=2)
 	tkgrid(getFrame(variablesBox), getFrame(byBox), sticky="nw")
@@ -173,7 +179,7 @@ orderByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="orderBy")
+	OkCancelHelp(helpSubject="orderBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=3)
 	tkgrid(getFrame(order1Box), getFrame(order2Box), getFrame(order3Box), sticky="nw")
@@ -233,7 +239,7 @@ splitByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="splitBy")
+	OkCancelHelp(helpSubject="splitBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=1)
 	tkgrid(getFrame(byBox), sticky="nw")
@@ -306,7 +312,7 @@ sampleByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OKCancelHelp(help="sampleBy")
+	OkCancelHelp(helpSubject="sampleBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=2)
 	tkgrid(getFrame(byBox), sticky="w")
