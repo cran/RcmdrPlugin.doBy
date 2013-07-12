@@ -1,8 +1,8 @@
-6ca2fc6a0d15803baa41313986621d38 *CHANGELOG
-dcd7ecbc52055e3fd6bbcd03954c539d *DESCRIPTION
-848baa45f4e7205ca2845b98b3878e2f *NAMESPACE
-cf8835ad9e4b4e01871d7526a9884206 *R/RcmdrPlugin.doBy.R
+876e5ffaf6e9984b5cd4508aaf4b6c86 *CHANGELOG
+c21d12cd4aded3d1710c53f03280af16 *DESCRIPTION
+b4dba949c9ed06e3c146fccbbac98c5c *NAMESPACE
+f95b4cef2d3e8fe99da09a4035ac3998 *R/RcmdrPlugin.doBy.R
 53f5ec0a73749a5e00f04a0f9f7ea7c1 *inst/etc/menus.txt
 ac7b077cbf44514b1e906aff0d21350d *man/RcmdrPlugin.doBy-internal.Rd
-1f48c1e0383418227b5a85385609ae6b *man/RcmdrPlugin.doBy-package.Rd
+a6f5e13cd54f3a7a4772bb30dd9ab99e *man/RcmdrPlugin.doBy-package.Rd
 e48a78a456d5faa6cefe43445982e3c5 *man/summaryByGUI.Rd

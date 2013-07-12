@@ -3,7 +3,7 @@
 
 # to satisify NOTEs about missing global binding (from John Fox's findGlobals() function - http://r.789695.n4.nabble.com/globalVariables-td4634291.html)
 if (getRversion() >= '2.15.1') globalVariables(c('top', 'dir1Variable', 'dir2Variable', 'dir3Variable',
-                                                 'OkCancelHelp', 'checkBoxFrame', 'buttonsFrame', 'replaceVariable', 'systematicVariable',
+                                                 'OKCancelHelp', 'checkBoxFrame', 'buttonsFrame', 'replaceVariable', 'systematicVariable',
                                                  'statisticFrame', 'statisticVariable'))
 
 
@@ -179,7 +179,7 @@ orderByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OkCancelHelp(helpSubject="orderBy")
+	OKCancelHelp(helpSubject="orderBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=3)
 	tkgrid(getFrame(order1Box), getFrame(order2Box), getFrame(order3Box), sticky="nw")
@@ -226,21 +226,40 @@ splitByGUI <- function(){
     
     by <- paste(byVariables, collapse="+")
       	
-    command <- paste("splitBy(~", by, ", data=", .activeDataSet, ")", sep="")
-    
-    # if to save to variable, then add that in
+    # if a prefix is given, then create each data.frame and set activedata to first one
     if (dsnameValue != "") {
-      command <- paste(dsnameValue, " <- ", command, sep="")
+      command <- paste(dsnameValue, " <- splitBy(~", by, ", data=", .activeDataSet, ")", sep="")
+      justDoIt(command)
+      
+      tempsp <- get(dsnameValue)
+      
+      #create each group's data.frame suffixed by group name
+      names(tempsp) <- gsub("\\|","_",names(tempsp)) # replace pipe by underscore in combination of factors
+      
+      for (i in 1:length(names(get(dsnameValue)))) {
+        command <- paste(dsnameValue, ".", names(tempsp)[i], " <- tempsp[\"", names(tempsp)[i], "\"]", sep="")
+        doItAndPrint(command)
+      }
+      
+      activeDataSet(paste(dsnameValue, ".", names(tempsp)[1],sep="")) #set active data to first group
+      
+    } else { #if no prefix is given, then just print each individual data frame
+      command <- paste("SplitList <- splitBy(~", by, ", data=", .activeDataSet, ")", sep="")
+      justDoIt(command)
+      
+      tempsp <- get("SplitList")
+      names(tempsp) <- gsub("\\|","_",names(tempsp)) # replace pipe by underscore in combination of factors
+      for (i in 1:length(names(tempsp))) {
+        command <- paste("tempsp[\"", names(tempsp)[i], "\"]", sep="")
+        doItAndPrint(command)
+      }
     }
-    
-		doItAndPrint(command)
-    #if (dsnameValue != "") activeDataSet(dsnameValue)
-		
+          
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OkCancelHelp(helpSubject="splitBy")
-	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
+	OKCancelHelp(helpSubject="splitBy")
+	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frames (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=1)
 	tkgrid(getFrame(byBox), sticky="nw")
 	tkgrid(buttonsFrame, sticky="w", columnspan=1)
@@ -312,7 +331,7 @@ sampleByGUI <- function(){
 		closeDialog()
 		tkfocus(CommanderWindow())
 	}
-	OkCancelHelp(helpSubject="sampleBy")
+	OKCancelHelp(helpSubject="sampleBy")
 	tkgrid(labelRcmdr(dsnameFrame, text=gettextRcmdr("Name for resulting data frame (leave blank to just print):  ")), entryDsname)
 	tkgrid(dsnameFrame, sticky="w", columnspan=2)
 	tkgrid(getFrame(byBox), sticky="w")

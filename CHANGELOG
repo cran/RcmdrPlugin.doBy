@@ -7,3 +7,6 @@
 
 0.1-2
 * Replaced legacy .First.lib with .onAttach
+
+0.1-3
+* Fixed dialog box compatibility with Rcmdr 2.0.0
